@@ -6,6 +6,7 @@ import { StableDiffusionControlNetPipeline } from './StableDiffusionControlNetPi
 import { StableDiffusionXLPipeline } from '@/pipelines/StableDiffusionXLPipeline'
 import { LatentConsistencyModelPipeline } from '@/pipelines/LatentConsistencyModelPipeline'
 import { LCMScheduler } from '@/schedulers/LCMScheduler'
+import { SDTurboPipeline } from './SDTurboPipeline'
 
 export class DiffusionPipeline {
   static async fromPretrained (modelRepoOrPath: string, options?: PretrainedOptions) {
@@ -32,6 +33,8 @@ export class DiffusionPipeline {
         return pipe
       case 'LatentConsistencyModelPipeline':
         return LatentConsistencyModelPipeline.fromPretrained(modelRepoOrPath, options)
+      case 'SDTurboPipeline':
+        return SDTurboPipeline.fromPretrained(modelRepoOrPath, options)
       default:
         throw new Error(`Unknown pipeline type ${index['_class_name']}`)
     }
